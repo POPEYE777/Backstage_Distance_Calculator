@@ -27,6 +27,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
+import MapIcon from '@material-ui/icons/Map'; // Import the icon for Geoapify
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -75,6 +76,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem icon={MapIcon} to="/geoapify" text="Geoapify" /> {/* New Geoapify button */}
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

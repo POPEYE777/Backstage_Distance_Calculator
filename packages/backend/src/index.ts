@@ -10,10 +10,32 @@ import { createBackend } from '@backstage/backend-defaults';
 
 const backend = createBackend();
 
+
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 backend.add(import('@backstage/plugin-scaffolder-backend'));
 backend.add(import('@backstage/plugin-techdocs-backend'));
+
+
+
+import expressLib from 'express';
+import geoapifyRouter from './plugins/geoapify/geoapify';
+
+const app = expressLib();
+
+app.use(expressLib.json());
+app.use('/api/geoapify', geoapifyRouter);
+
+const port = process.env.PORT || 7000;
+
+app.listen(port, () => {
+  console.log(`Backend server running at http://localhost:${port}`);
+});
+
+
+
+
+
 
 // auth plugin
 backend.add(import('@backstage/plugin-auth-backend'));
@@ -51,4 +73,9 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
+backend.add(import('@internal/backstage-plugin-geoapify-backend'));
 backend.start();
+function express() {
+  throw new Error('Function not implemented.');
+}
+
